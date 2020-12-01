@@ -1,4 +1,4 @@
-import jdk.jshell.spi.ExecutionControl;
+//import jdk.jshell.spi.ExecutionControl;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -35,18 +35,21 @@ public class Individual {
     /**
      * Self compute the fitness score
      */
-    public void computeFitnessScore() throws ExecutionControl.NotImplementedException
+    public void computeFitnessScore() //throws ExecutionControl.NotImplementedException
     {
-        throw new ExecutionControl.NotImplementedException("Method computeFitnessScore has not been implemented yet.");
+        //throw new ExecutionControl.NotImplementedException("Method computeFitnessScore has not been implemented yet.");
     }
 
     /**
      * Selects a bit in the genes array and flips it to either 1 or 0
      * @param geneIndex index of the gene that needs to be flipped
      */
-    public void geneFlip(int geneIndex) throws ExecutionControl.NotImplementedException
-    {
-        throw new ExecutionControl.NotImplementedException("Method computeFitnessScore has not been implemented yet.");
+    public void geneFlip(int geneIndex) {
+    	if(genes[geneIndex]==0) {
+    		genes[geneIndex] = 1;
+    	}
+    	else genes[geneIndex] = 0;
+       
     }
 
     public int[] getGenes()
