@@ -1,8 +1,9 @@
-//import jdk.jshell.spi.ExecutionControl;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
+import java.lang.Math;
 
 public class Individual {
 
@@ -19,7 +20,7 @@ public class Individual {
         Random rand = new Random();
         for(int i=0; i<numberOfGenes; i++)
             this.genes[i] = rand.nextInt(2);
-        //this.computeFitnessScore()
+        this.computeFitnessScore();
     }
 
     /**
@@ -29,33 +30,35 @@ public class Individual {
     public Individual(int[] genes)
     {
         this.genes = genes;
-        //this.computeFitnessScore()
+        this.computeFitnessScore();
     }
 
     /**
      * Self compute the fitness score
      */
-    public void computeFitnessScore() //throws ExecutionControl.NotImplementedException
+    public void computeFitnessScore()
     {
-        //throw new ExecutionControl.NotImplementedException("Method computeFitnessScore has not been implemented yet.");
+        fitnessScore = 0;
+        for (int i = 0; i < genes.length ;i++ )
+        {
+            fitnessScore += genes[i]*  Math.pow(2, genes.length-i);
+        }
     }
 
     /**
      * Selects a bit in the genes array and flips it to either 1 or 0
      * @param geneIndex index of the gene that needs to be flipped
      */
-    public void geneFlip(int geneIndex) {
-    	if(genes[geneIndex]==0) {
-    		genes[geneIndex] = 1;
-    	}
-    	else genes[geneIndex] = 0;
-       
+    public void geneFlip(int geneIndex)
+    {
+        if(genes[geneIndex]==0) {
+            genes[geneIndex] = 1;
+        }
+        else genes[geneIndex] = 0;
     }
 
-    public int[] getGenes()
-    {
-        return genes;
-    }
+    public int[] getGenes() { return genes; }
+    public int getFitnessScore() { return fitnessScore; }
 
     @Override
     public String toString()
