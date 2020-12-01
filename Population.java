@@ -1,6 +1,7 @@
 import jdk.jshell.spi.ExecutionControl;
 
 import java.util.Arrays;
+import java.lang.Math;
 
 public class Population {
 
@@ -50,11 +51,12 @@ public class Population {
         throw new ExecutionControl.NotImplementedException("Method generateNewPopulation has not been implemented yet.");
         /*
 
-        Utilisez les CROSSTYPE ici pour différencier le type de sélection
+        //Utilisez les CROSSTYPE ici pour différencier le type de sélection
 
         if(this.crosstype == Crosstype.ROULETTE)
         {
             //ToDo generate using a ROULETTE crosstype
+            int alea = Math.random()*Parent
         }
         else{
             //ToDo generate using a TOURNOI crosstype
