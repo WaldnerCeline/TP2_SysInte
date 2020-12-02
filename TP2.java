@@ -32,14 +32,32 @@ public class TP2 {
         Population pop = new Population(popSize, genesPerPop, crosstype, mutationChance);
 
         System.out.println(pop);
+        int convergeance = 0;
 
+        //version avec epoch
+        /*
         for(int epoch=0; epoch<10; epoch++)
         {
             Population newPop = pop.generateNewPopulation();
-
             pop = newPop;
         }
-        System.out.println("resultat");
+         */
+
+        //version convergeance
+        int cpt = 0;
+        while (convergeance < 10)
+        {
+            Population newPop = pop.generateNewPopulation();
+            int oldMaxFit = pop.getBestFiness();
+            pop = newPop;
+            int newMaxFit = pop.getBestFiness();
+            if (oldMaxFit == newMaxFit)
+                convergeance++;
+            else
+                convergeance = 0;
+            cpt ++;
+        }
+        System.out.println("nb epoch : " + cpt);
         System.out.println(pop.toString());
     }
 }

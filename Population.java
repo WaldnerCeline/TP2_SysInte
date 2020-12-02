@@ -107,6 +107,17 @@ public class Population {
         return tab;
     }
 
+    public int getBestFiness()
+    {
+        int maxFitness = 0;
+        for (int i = 0; i < individuals.length; i++)
+        {
+            if (maxFitness < individuals[i].getFitnessScore())
+                maxFitness = individuals[i].getFitnessScore();
+        }
+        return maxFitness;
+    }
+
     @Override
     public String toString()
     {
