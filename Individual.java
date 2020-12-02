@@ -54,7 +54,9 @@ public class Individual {
         if(genes[geneIndex]==0) {
             genes[geneIndex] = 1;
         }
-        else genes[geneIndex] = 0;
+        else
+            genes[geneIndex] = 0;
+        this.computeFitnessScore();
     }
 
     public int[] getGenes() { return genes; }
