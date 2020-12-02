@@ -46,21 +46,66 @@ public class Population {
      * Creates a new population using this generation's individuals
      * @return the newly generated population
      */
-    public Population generateNewPopulation() throws ExecutionControl.NotImplementedException
+    public Population generateNewPopulation()
     {
-        throw new ExecutionControl.NotImplementedException("Method generateNewPopulation has not been implemented yet.");
-        /*
-
         //Utilisez les CROSSTYPE ici pour différencier le type de sélection
 
         if(this.crosstype == Crosstype.ROULETTE)
         {
+            System.out.println("ha");
             //ToDo generate using a ROULETTE crosstype
-            int alea = Math.random()*Parent
+            /*
+            for (int i = 0 ; i < individuals.length; i++)
+            {
+                Individual parent1 = roulette(individuals);
+                Individual parent2 = roulette(individuals);
+                Individual[] tab = croisement1Point(parent1, parent2);
+
+            }
+            */
+
+
         }
         else{
             //ToDo generate using a TOURNOI crosstype
-        }*/
+        }
+    }
+
+    private Individual roulette(Individual[] population)
+    {
+        int somme = 0;
+        for (int i = 0; i < population.length; i++)
+        {
+            somme += population[i].getFitnessScore();
+        }
+        double alea = Math.random() * somme;
+        int cummul = 0;
+        int index = 0;
+        while(cummul + population[index].getFitnessScore() < alea)
+        {
+            cummul += population[index].getFitnessScore();
+            index += 1;
+        }
+        return population[index];
+    }
+    private Individual[] croisement1Point (Individual parent1, Individual parent2)
+    {
+        int xp = 2;
+        int[] enfant1 = new int[parent1.getGenes().length];
+        int[] enfant2 = new int[parent1.getGenes().length];
+
+        for (int i = 0; i < xp; i++){
+            enfant1[i] = parent1.getGenes()[i];
+            enfant2[i] = parent2.getGenes()[i];
+        }
+        for (int i = xp; i < parent1.getGenes().length; i++){
+            enfant1[i] = parent2.getGenes()[i];
+            enfant2[i] = parent1.getGenes()[i];
+        }
+        Individual[] tab = new Individual[2];
+        tab[0] = new Individual(enfant1);
+        tab[1] = new Individual(enfant2);
+        return tab;
     }
 
     /**
