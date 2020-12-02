@@ -48,27 +48,24 @@ public class Population {
      */
     public Population generateNewPopulation()
     {
-        //Utilisez les CROSSTYPE ici pour différencier le type de sélection
+        Individual[] retour = new Individual[individuals.length];
 
         if(this.crosstype == Crosstype.ROULETTE)
         {
-            System.out.println("ha");
-            //ToDo generate using a ROULETTE crosstype
-            /*
-            for (int i = 0 ; i < individuals.length; i++)
+            for (int i = 0 ; i < individuals.length; i+=2)
             {
                 Individual parent1 = roulette(individuals);
                 Individual parent2 = roulette(individuals);
                 Individual[] tab = croisement1Point(parent1, parent2);
-
+                retour[i] = tab[0];
+                if(i+1<individuals.length)
+                    retour[i+1] = tab[1];
             }
-            */
-
-
         }
         else{
             //ToDo generate using a TOURNOI crosstype
         }
+        return new Population(retour, this.crosstype, this.mutationChance);
     }
 
     private Individual roulette(Individual[] population)
@@ -90,9 +87,11 @@ public class Population {
     }
     private Individual[] croisement1Point (Individual parent1, Individual parent2)
     {
-        int xp = 2;
+                int xp = 2;
         int[] enfant1 = new int[parent1.getGenes().length];
         int[] enfant2 = new int[parent1.getGenes().length];
+
+
 
         for (int i = 0; i < xp; i++){
             enfant1[i] = parent1.getGenes()[i];
@@ -106,28 +105,6 @@ public class Population {
         tab[0] = new Individual(enfant1);
         tab[1] = new Individual(enfant2);
         return tab;
-    }
-
-    /**
-     * Takes 2 individuals and create 2 children using their genes
-     * @param firstParent the first selected individual
-     * @param secondParent the second selected individual
-     * @param crosspoint index of the crosspoint
-     * @return an array of 2 individuals
-     */
-    public Individual[] reproduceIndividuals(Individual firstParent, Individual secondParent, int crosspoint)
-            throws ExecutionControl.NotImplementedException
-    {
-        Individual[] offsprings = new Individual[2];
-
-//        int[] firstChildGenes = new int[genesPerPop];
-//        int[] secondChildGenes = new int[genesPerPop];
-//        ToDo compute the genes
-//        ToDo compute a possible mutation of a gene
-//        offsprings[0] = new Individual(firstChildGenes);
-//        offsprings[1] = new Individual(secondChildGenes);
-
-        throw new ExecutionControl.NotImplementedException("Method reproduceIndividuals has not been implemented yet.");
     }
 
     @Override

@@ -33,11 +33,13 @@ public class TP2 {
 
         System.out.println(pop);
 
-        for(int epoch=0; epoch<50; epoch++)
+        for(int epoch=0; epoch<10; epoch++)
         {
-            //Population newPop = pop.generateNewPopulation();
+            Population newPop = pop.generateNewPopulation();
 
-            //pop = newPop;
+            pop = newPop;
         }
+        System.out.println("resultat");
+        System.out.println(pop.toString());
     }
 }
