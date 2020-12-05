@@ -1,4 +1,3 @@
-import jdk.jshell.spi.ExecutionControl;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -54,8 +53,7 @@ public class Individual {
         if(genes[geneIndex]==0) {
             genes[geneIndex] = 1;
         }
-        else
-            genes[geneIndex] = 0;
+        else genes[geneIndex] = 0;
         this.computeFitnessScore();
     }
 
@@ -70,3 +68,7 @@ public class Individual {
                 '}';
     }
 }
+
+ 
+
+
